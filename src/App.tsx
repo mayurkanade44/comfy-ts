@@ -1,25 +1,52 @@
-import { Button } from "@/components/ui/button";
-import { useAppSelector } from "./hooks";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import * as Pages from "./pages";
 
-const App = () => {
-  const { name } = useAppSelector((state) => state.userState);
-  console.log(name);
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Pages.HomeLayout />,
+    children: [
+      {
+        index: true,
+        element: <Pages.Landing />,
+      },
+      {
+        path: "products",
+        element: <Pages.Products />,
+      },
+      {
+        path: "products/:id",
+        element: <Pages.SingleProduct />,
+      },
+      {
+        path: "cart",
+        element: <Pages.Cart />,
+      },
+      {
+        path: "about",
+        element: <Pages.About />,
+      },
+      {
+        path: "orders",
+        element: <Pages.Orders />,
+      },
+      {
+        path: "checkout",
+        element: <Pages.Checkout />,
+      },
+    ],
+  },
+  {
+    path: "/login",
+    element: <Pages.Login />,
+  },
+  {
+    path: "/register",
+    element: <Pages.Register />,
+  },
+]);
 
-  return (
-    <>
-      <div className="text-7xl font-bold">
-        App
-        <Button
-          variant="destructive"
-          size="lg"
-          onClick={() => console.log("ok")}
-        >
-          Click
-        </Button>
-      </div>
-      <Pages.About />
-    </>
-  );
+const App = () => {
+  return <RouterProvider router={router} />;
 };
 export default App;
