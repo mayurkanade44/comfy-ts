@@ -1,13 +1,18 @@
 import * as Components from "@/components";
-import { customFetch, type ProductsResponse } from "@/utils";
+import { customFetch,type ProductsResponseWithParams, type ProductsResponse } from "@/utils";
 import { type LoaderFunction } from "react-router-dom";
 
 const url = "/products";
-export const productsLoader: LoaderFunction =
-  async (): Promise<ProductsResponse> => {
-    const res = await customFetch<ProductsResponse>(url);
-    return { ...res.data };
-  };
+export const productsLoader: LoaderFunction = async ({
+  request,
+}): Promise<ProductsResponseWithParams> => {
+  const params = Object.fromEntries([
+    ...new URL(request.url).searchParams.entries(),
+  ]);
+
+  const res = await customFetch<ProductsResponse>(url, { params });
+  return { ...res.data, params };
+};
 
 export const Products = () => {
   return (

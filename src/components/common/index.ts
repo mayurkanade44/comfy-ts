@@ -16,3 +16,7 @@ export * from "./ProductsContainer";
 export * from "./PaginationContainer";
 export * from "./ProductsList";
 export * from "./Loading";
+export * from "./FormInput";
+export * from "./FormSelect";
+export * from "./FormRange";
+export * from "./FormCheckBox";
