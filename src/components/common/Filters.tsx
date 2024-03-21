@@ -1,6 +1,4 @@
 import { Form, Link, useLoaderData } from "react-router-dom";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { ProductsResponseWithParams } from "@/utils";
 import { FormCheckBox, FormInput, FormRange, FormSelect } from ".";
