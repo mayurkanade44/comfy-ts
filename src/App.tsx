@@ -24,6 +24,7 @@ const router = createBrowserRouter([
         path: "products/:id",
         element: <Pages.SingleProduct />,
         errorElement: <ErrorElement />,
+        loader: Pages.singleProductLoader,
       },
       {
         path: "cart",

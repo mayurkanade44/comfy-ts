@@ -20,3 +20,5 @@ export * from "./FormInput";
 export * from "./FormSelect";
 export * from "./FormRange";
 export * from "./FormCheckBox";
+export * from "./SelectProductColor";
+export * from "./SelectProductAmount";
