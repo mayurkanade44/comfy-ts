@@ -1,12 +1,14 @@
 import { useLoaderData } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { customFetch, type SingleProductResponse } from "@/utils";
+import { CartItem, customFetch, type SingleProductResponse } from "@/utils";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import * as Components from "../components";
 
 import { type LoaderFunction } from "react-router-dom";
+import { useAppDispatch } from "@/hooks";
+import { addItem } from "@/features/cartSlice";
 
 export const singleProductLoader: LoaderFunction = async ({
   params,
@@ -24,8 +26,21 @@ export const SingleProduct = () => {
   const [productColor, setProductColor] = useState(colors[0]);
   const [amount, setAmount] = useState(1);
 
+  const dispatch = useAppDispatch();
+
+  const cartProduct: CartItem = {
+    cartID: product.id + productColor,
+    productID: product.id,
+    image,
+    title,
+    price,
+    amount,
+    productColor,
+    company,
+  };
+
   const addToCart = () => {
-    console.log("add to cart");
+    dispatch(addItem(cartProduct));
   };
   return (
     <section>
@@ -61,7 +76,11 @@ export const SingleProduct = () => {
             productColor={productColor}
           />
           {/* AMOUNT */}
-          <Components.SelectProductAmount mode={Components.Mode.SingleProduct} amount={amount} setAmount={setAmount} />
+          <Components.SelectProductAmount
+            mode={Components.Mode.SingleProduct}
+            amount={amount}
+            setAmount={setAmount}
+          />
           {/* CART BUTTON */}
           <Button size="lg" className="mt-10" onClick={addToCart}>
             Add to bag

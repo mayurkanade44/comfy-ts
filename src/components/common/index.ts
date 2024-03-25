@@ -22,3 +22,6 @@ export * from "./FormRange";
 export * from "./FormCheckBox";
 export * from "./SelectProductColor";
 export * from "./SelectProductAmount";
+export * from "./CartItemColumns";
+export * from "./CartItemsList";
+export * from "./CartTotals";
