@@ -1,6 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import * as Pages from "./pages";
 import { ErrorElement } from "./components";
+import { store } from "./store";
 
 const router = createBrowserRouter([
   {
@@ -52,11 +53,13 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Pages.Login />,
     errorElement: <Pages.Error />,
+    action: Pages.loginAction(store),
   },
   {
     path: "/register",
     element: <Pages.Register />,
     errorElement: <Pages.Error />,
+    action: Pages.registerAction,
   },
 ]);
 
